@@ -1,11 +1,11 @@
 (ns test.app
   (:require
-    ["expo" :as ex]
-    ["react-native" :as rn]
-    ["react" :as react]
-    [reagent.core :as r]
-    [shadow.expo :as expo]
-    ))
+   ["expo" :as ex]
+   ["react-native" :as rn]
+   ["react" :as react]
+   [reagent.core :as r]
+   [shadow.expo :as expo]
+   [test.foo :refer [foo]]))
 
 ;; must use defonce and must refresh full app so metro can fill these in
 ;; at live-reload time `require` does not exist and will cause errors
@@ -29,6 +29,7 @@
 (defn root []
   [:> rn/View {:style (.-container styles)}
    [:> rn/Text {:style (.-title styles)} "Hello!"]
+   [foo]
    [:> rn/Image {:source splash-img :style {:width 200 :height 200}}]])
 
 (defn start
@@ -38,4 +39,3 @@
 
 (defn init []
   (start))
-
